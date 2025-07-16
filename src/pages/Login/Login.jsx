@@ -1,17 +1,18 @@
 import React, { useContext, useState } from "react";
 import { FaRegEye, FaRegEyeSlash } from "react-icons/fa";
 import { Link, useLocation, useNavigate } from "react-router";
-import { AuthContext } from "../../assets/Context/AuthContext";
+
 import { toast } from "react-toastify";
-import { ThemeContext } from "../../assets/ThemeContext/TemeProvider";
+import { AuthContext } from "../../Context/AuthContext";
+
 
 
 const Login = () => {
-  const { theme } = useContext(ThemeContext);
+  
   const [showPass, setShowPass] = useState(false);
   const { createUserWithGoogle, handleLoginWithEmailPass, setEmail } =
     useContext(AuthContext);
-  const [error, setError] = useState("");
+  const [errore, setError] = useState("");
   const navigate = useNavigate();
   const location = useLocation();
 
@@ -40,6 +41,8 @@ const Login = () => {
       })
       .catch((error) => {
         setError(error.message);
+        toast.error(errore)
+        
       });
   };
 
@@ -53,11 +56,12 @@ const Login = () => {
       })
       .catch((error) => {
         setError(error.message);
+        toast.error(errore)
       });
   };
   return (
     <div
-      className={`w-full ${theme === "dark" ? "bg-gray-700" : "bg-red-100"}`}
+      className={`w-full `}
     >
       <title>LogIn</title>
       <div className="md:w-[60%] py-15 md:mx-auto w-full flex items-center justify-center">
@@ -100,15 +104,7 @@ const Login = () => {
               </div>
             </div>
 
-            <div>
-              {error ? (
-                <div className="text-center text-red-600 text-sm font-medium">
-                  <p>{error}</p>
-                </div>
-              ) : (
-                ""
-              )}
-            </div>
+            
 
             <div>
               <a
