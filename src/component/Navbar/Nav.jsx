@@ -71,8 +71,9 @@ const Nav = () => {
           </li>
         </ul>
       </div>
-      <div className="navbar-end">
+      <div className="navbar-end flex gap-2">
         <NavLink to={'/login'}>LogIn</NavLink>
+        <NavLink to={'/signup'}>SignUp</NavLink>
       </div>
     </div>
   );

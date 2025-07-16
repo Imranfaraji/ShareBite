@@ -1,56 +1,24 @@
 import React, { useContext, useState } from "react";
 import { FaRegEye, FaRegEyeSlash } from "react-icons/fa";
-import { Link, useLocation, useNavigate } from "react-router";
 
 import { toast } from "react-toastify";
+import { Link, useNavigate } from "react-router";
 import { AuthContext } from "../../Context/AuthContext";
 
+const SignUp = () => {
 
-
-const Login = () => {
   
-  const [showPass, setShowPass] = useState(false);
-  const { createUserWithGoogle, handleLoginWithEmailPass} =
-    useContext(AuthContext);
+  const { createUserWithGoogle ,createUser,UpdateUserProfile} = useContext(AuthContext);
+
   const [errore, setError] = useState("");
+  const [showPass, setShowPass] = useState(false);
   const navigate = useNavigate();
-  const location = useLocation();
-
-  const resetPass = (e) => {
-    e.preventDefault();
-
-    const emailValue = document.getElementById("email")?.value;
-    setError("");
-    if (!emailValue) {
-      toast.error("plase provide your email");
-    } else {
-      
-      toast.error("This feature is not recommended on assignment 11")
-    }
-  };
-
-  const handleLogin = (e) => {
-    e.preventDefault();
-    const email = e.target.email.value;
-    const password = e.target.password.value;
-    setError("");
-    handleLoginWithEmailPass(email, password)
-      .then(() => {
-        toast.success("Successfully login!");
-        navigate(location?.state || "/");
-      })
-      .catch((error) => {
-        setError(error.message);
-        toast.error(errore)
-        
-      });
-  };
 
   const handleUserWithGoogle = () => {
     setError("");
     createUserWithGoogle()
       .then(() => {
-        toast.success("LogIn successfully!");
+        toast.success("SignUp successfully!");
 
         navigate(location?.state || "/");
       })
@@ -59,33 +27,90 @@ const Login = () => {
         toast.error(errore)
       });
   };
-  return (
-    <div
-      className={`w-full `}
-    >
-      <title>LogIn</title>
-      <div className="md:w-[60%] py-15 md:mx-auto w-full flex items-center justify-center">
-        
-          <div className="hidden lg:flex bg-[url('https://i.ibb.co/h1x6sGV9/victoria-shes-UC0-HZd-Uit-WY-unsplash.jpg')] w-1/2 h-[500px] rounded-l-2xl bg-cover bg-center bg-norepeat"></div>
-        
 
-        <div className="lg:w-1/2 w-11/12 p-2 bg-gray-900 h-[500px] rounded-2xl lg:rounded-none lg:rounded-r-2xl">
+  const handleSignIn = (e) => {
+    e.preventDefault();
+    const email = e.target.email.value;
+    const password = e.target.password.value;
+    const userName=e.target.name.value;
+    const photoUrl=e.target.photoUrl.value
+       
+       setError("")
+    const passregex=/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*])[A-Za-z\d!@#$%^&*]{6,}$/;
+    if(!passregex.test(password)){
+      setError('Password muse be at least 6 characters, and include a capital letter , a number and a special characters.')
+      return toast.error(errore)
+    }
+
+
+    
+      setError("")
+    createUser(email,password).then(()=>{
+      
+      toast.success("SuccessFully signUp!")
+
+      setError('')
+      UpdateUserProfile(userName,photoUrl).then(()=>{
+
+      }).catch(error=>{
+        setError("User update failed :" 
+          +error.message
+         )
+         toast.error(errore)
+      })
+      navigate(location?.state || "/");
+    }).catch(error=>{
+       if(error.code==='auth/email-already-in-use'){
+        setError('This email is already register.Please try another email!')
+      }else if(error.code==='auth/weak-password'){
+        setError('Password is too weak. Please use at least 6 chereacters')
+      }else{
+        setError(error.message)
+        toast.error(errore)
+      }
+    })
+  };
+
+  return (
+    <div className={`w-full}`}>
+
+      <title>Registration</title>
+      <div className="md:w-[60%] py-15 md:mx-auto w-full flex items-center justify-center">
+        <div className="lg:w-1/2 w-11/12 p-2 bg-gray-900 h-[620px] rounded-2xl lg:rounded-none lg:rounded-l-2xl">
           <div className="w-full text-center py-5">
-            <h1 className="text-2xl font-extrabold text-white">LogIn Now!</h1>
+            <h1 className="text-2xl font-extrabold text-white">SignUp Now!</h1>
           </div>
           <form
-            onSubmit={handleLogin}
+            onSubmit={handleSignIn}
             className=" flex flex-col gap-3 text-white "
           >
+            <label className=" text-sm font-bold text-white">Name</label>
+            <input
+              type="text"
+              name="name"
+              required
+              className="input text-red-400 text-sm font-medium w-full"
+              placeholder="Name"
+            />
+
             <label className=" text-sm font-bold text-white">Email</label>
             <input
-              id="email"
               type="email"
               name="email"
               required
               className="input text-red-400 text-sm font-medium w-full"
               placeholder="Email"
             />
+
+            <label className=" text-sm font-bold text-white">Photo Url</label>
+            <input
+              type="text"
+              name="photoUrl"
+              required
+              className="input text-red-400 text-sm font-medium w-full"
+              placeholder="Photo Url"
+            />
+
             <div className="relative">
               <label className="text-sm font-bold text-white">Password</label>
               <input
@@ -104,18 +129,10 @@ const Login = () => {
               </div>
             </div>
 
-            
+           
 
-            <div>
-              <a
-                onClick={resetPass}
-                className="link text-sm font-bold link-hover"
-              >
-                Forgot password?
-              </a>
-            </div>
             <button className="btn bg-red-500 text-white border-none w-full mt-4">
-              Login
+              SignUp
             </button>
           </form>
           <div className="py-3 text-center">
@@ -152,19 +169,21 @@ const Login = () => {
                 ></path>
               </g>
             </svg>
-            Login with Google
+            SignUp with Google
           </button>
 
           <p className="text-white mt-3">
-            Don't have an aacount?{" "}
-            <Link className="text-blue-400 underline" to={"/signup"}>
-              Registration
+            have an aacount?{" "}
+            <Link className="text-blue-400 underline" to={"/login"}>
+              LogIn
             </Link>
           </p>
         </div>
+
+        <div className="hidden lg:flex bg-[url('https://i.ibb.co/h1x6sGV9/victoria-shes-UC0-HZd-Uit-WY-unsplash.jpg')] w-1/2 h-[620px] rounded-r-2xl bg-cover bg-center bg-norepeat"></div>
       </div>
     </div>
   );
 };
 
-export default Login;
+export default SignUp;
