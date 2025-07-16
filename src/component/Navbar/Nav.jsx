@@ -1,79 +1,154 @@
-import React from "react";
-import { NavLink } from "react-router";
+import React, { useContext } from "react";
+import { Link, NavLink } from "react-router";
+import { AuthContext } from "../../Context/AuthContext";
+import { toast } from "react-toastify";
 
 const Nav = () => {
+  const { user,handlesignOut } = useContext(AuthContext);
+
+  const logoutUser=()=>{
+    handlesignOut().then(()=>{
+      toast.success('successfully LogOut!')
+    }).then(error=>{
+      toast.error(error.message)
+    })
+  }
+
   return (
-    <div className="navbar bg-base-100 shadow-sm">
-      <div className="navbar-start">
-        <div className="dropdown">
-          <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden">
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              className="h-5 w-5"
-              fill="none"
-              viewBox="0 0 24 24"
-              stroke="currentColor"
+    <div className="w-full primary text-white">
+      <div className="navbar responsive shadow-sm">
+        <div className="navbar-start">
+          <div className="dropdown">
+            <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                className="h-5 w-5"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+              >
+                {" "}
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth="2"
+                  d="M4 6h16M4 12h8m-8 6h16"
+                />{" "}
+              </svg>
+            </div>
+            <ul
+              tabIndex={0}
+              className="menu menu-sm dropdown-content accent rounded-box z-1 mt-3 w-52 p-2 shadow"
             >
-              {" "}
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth="2"
-                d="M4 6h16M4 12h8m-8 6h16"
-              />{" "}
-            </svg>
+              <li className="text-sm font-bold">
+                <NavLink
+                  className={({ isActive }) => (isActive ? "border" : "")}
+                  to={"/"}
+                >
+                  Home
+                </NavLink>
+              </li>
+
+              <li className="text-sm font-bold">
+                <NavLink
+                  className={({ isActive }) => (isActive ? "border" : "")}
+                  to={"/avlailablefood"}
+                >
+                  Available Foods
+                </NavLink>
+              </li>
+              <li className="text-sm font-bold">
+                <NavLink
+                  className={({ isActive }) => (isActive ? "border" : "")}
+                  to={"/addfood"}
+                >
+                  Add Food
+                </NavLink>
+              </li>
+              <li className="text-sm font-bold">
+                <NavLink
+                  className={({ isActive }) => (isActive ? "border" : "")}
+                  to={"/managefood"}
+                >
+                  Manage My Food
+                </NavLink>
+              </li>
+              <li className="text-sm font-bold">
+                <NavLink
+                  className={({ isActive }) => (isActive ? "border" : "")}
+                  to={"/foodrequest"}
+                >
+                  My Food Request
+                </NavLink>
+              </li>
+            </ul>
           </div>
-          <ul
-            tabIndex={0}
-            className="menu menu-sm dropdown-content bg-base-100 rounded-box z-1 mt-3 w-52 p-2 shadow"
-          >
-            <li>
-              <a>Item 1</a>
+          <Link to={"/"} className="text-2xl italic font-extrabold">
+            Share<span className="text-orange-300 text-3xl">Bite</span>{" "}
+          </Link>
+        </div>
+        <div className="navbar-center hidden lg:flex">
+          <ul className="menu menu-horizontal px-1">
+            <li className="text-sm font-bold">
+              <NavLink
+                className={({ isActive }) => (isActive ? "border" : "")}
+                to={"/"}
+              >
+                Home
+              </NavLink>
             </li>
-            <li>
-              <a>Parent</a>
-              <ul className="p-2">
-                <li>
-                  <a>Submenu 1</a>
-                </li>
-                <li>
-                  <a>Submenu 2</a>
-                </li>
-              </ul>
+
+            <li className="text-sm font-bold">
+              <NavLink
+                className={({ isActive }) => (isActive ? "border" : "")}
+                to={"/avlailablefood"}
+              >
+                Available Foods
+              </NavLink>
             </li>
-            <li>
-              <a>Item 3</a>
+            <li className="text-sm font-bold">
+              <NavLink
+                className={({ isActive }) => (isActive ? "border" : "")}
+                to={"/addfood"}
+              >
+                Add Food
+              </NavLink>
+            </li>
+            <li className="text-sm font-bold">
+              <NavLink
+                className={({ isActive }) => (isActive ? "border" : "")}
+                to={"/managefood"}
+              >
+                Manage My Food
+              </NavLink>
+            </li>
+            <li className="text-sm font-bold">
+              <NavLink
+                className={({ isActive }) => (isActive ? "border" : "")}
+                to={"/foodrequest"}
+              >
+                My Food Request
+              </NavLink>
             </li>
           </ul>
         </div>
-        <a className="btn btn-ghost text-xl">daisyUI</a>
-      </div>
-      <div className="navbar-center hidden lg:flex">
-        <ul className="menu menu-horizontal px-1">
-          <li>
-            <a>Item 1</a>
-          </li>
-          <li>
-            <details>
-              <summary>Parent</summary>
-              <ul className="p-2">
-                <li>
-                  <a>Submenu 1</a>
-                </li>
-                <li>
-                  <a>Submenu 2</a>
-                </li>
-              </ul>
-            </details>
-          </li>
-          <li>
-            <a>Item 3</a>
-          </li>
-        </ul>
-      </div>
-      <div className="navbar-end flex gap-2">
-        <NavLink to={'/login'}>LogIn</NavLink>
-        <NavLink to={'/signup'}>SignUp</NavLink>
+        <div className="navbar-end flex gap-3">
+          {user ? (
+            <>
+              <div className="avatar w-12 h-12">
+                <div className="ring-primary ring-offset-base-100  rounded-full ring-2 ring-offset-2">
+                  <img src={user?.photoURL} />
+                </div>
+              </div>
+              <button onClick={logoutUser} className=" btn">Logout</button>
+            </>
+          ) : (
+            <>
+              <NavLink className={'btn'} to={"/login"}>LogIn</NavLink>
+              <NavLink className={'btn'} to={"/signup"}>SignUp</NavLink>
+            </>
+          )}
+        </div>
       </div>
     </div>
   );

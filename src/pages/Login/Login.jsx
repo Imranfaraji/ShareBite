@@ -61,7 +61,7 @@ const Login = () => {
   };
   return (
     <div
-      className={`w-full `}
+      className={`w-full bg-[#A5D6A7] `}
     >
       <title>LogIn</title>
       <div className="md:w-[60%] py-15 md:mx-auto w-full flex items-center justify-center">

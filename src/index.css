@@ -1,7 +1,11 @@
-@import "tailwindcss";
-@plugin "daisyui";
 
 @import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&display=swap');
+@import "tailwindcss";
+
+
+@plugin "daisyui";
+
+
 
 .roboto-font{
   font-family: "Roboto", sans-serif;
@@ -9,4 +13,29 @@
   
   font-style: normal;
   
+}
+
+.responsive{
+  @apply md:w-11/12 md:mx-auto w-full md:px-0 px-2
+}
+
+.primary{
+
+  background-color: #2E7D32;
+
+}
+.secondary{
+  background-color:#A5D6A7 ;
+}
+
+.accent{
+  background-color: #FFCC80;
+}
+
+.background{
+  background-color:#FAFAFA ;
+}
+
+.text-color{
+color: #212121;
 }
