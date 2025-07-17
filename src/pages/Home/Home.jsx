@@ -5,6 +5,7 @@ import HowItWork from '../../component/HowItWork/HowItWork';
 const Home = () => {
     return (
         <>
+        <title>ShareBite || Home</title>
         <Banner></Banner>
         <HowItWork></HowItWork>
         </>
