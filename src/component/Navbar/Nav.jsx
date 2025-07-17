@@ -38,7 +38,7 @@ const Nav = () => {
             </div>
             <ul
               tabIndex={0}
-              className="menu menu-sm dropdown-content accent rounded-box z-1 mt-3 w-52 p-2 shadow"
+              className="menu menu-sm dropdown-content bg-gray-600 rounded-box z-1 mt-3 w-52 p-2 shadow"
             >
               <li className="text-sm font-bold">
                 <NavLink
@@ -83,8 +83,8 @@ const Nav = () => {
               </li>
             </ul>
           </div>
-          <Link to={"/"} className="text-2xl italic font-extrabold">
-            Share<span className="text-orange-300 text-3xl">Bite</span>{" "}
+          <Link to={"/"} className="md:text-2xl text-xl italic font-extrabold">
+            Share<span className="text-orange-300 text-2xl md:text-3xl">Bite</span>{" "}
           </Link>
         </div>
         <div className="navbar-center hidden lg:flex">
@@ -135,7 +135,7 @@ const Nav = () => {
         <div className="navbar-end flex gap-3">
           {user ? (
             <>
-              <div className="avatar w-12 h-12">
+              <div className="avatar w-11 h-11">
                 <div className="ring-primary ring-offset-base-100  rounded-full ring-2 ring-offset-2">
                   <img src={user?.photoURL} />
                 </div>
