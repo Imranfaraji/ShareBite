@@ -72,7 +72,7 @@ const SignUp = () => {
   };
 
   return (
-    <div className={`w-full bg-[#A5D6A7]`}>
+    <div className={`w-full bg-[#A5D6A7] min-h-screen flex items-center justify-center`}>
 
       <title>Registration</title>
       <div className="md:w-[60%]  py-15 md:mx-auto w-full flex items-center justify-center">
