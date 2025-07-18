@@ -11,11 +11,13 @@ import PrivetRout from "./PrivetRout"
 import AddFood from "../../pages/AddFood/AddFood"
 import ManageFood from "../../pages/ManageFood/ManageFood"
 import MyFoodRequest from "../../pages/MyFoodRequest/MyFoodRequest"
+import Error from "../ErrorPage/Error";
 
  export const router = createBrowserRouter([
     {
       path: "/",
       element: <Root></Root>,
+      errorElement:<Error></Error>,
       children:[
         {index:true, Component:Home},
         {
