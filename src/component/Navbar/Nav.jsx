@@ -6,6 +6,8 @@ import { toast } from "react-toastify";
 const Nav = () => {
   const { user,handlesignOut } = useContext(AuthContext);
 
+  
+
   const logoutUser=()=>{
     handlesignOut().then(()=>{
       toast.success('successfully LogOut!')
@@ -136,7 +138,7 @@ const Nav = () => {
           {user ? (
             <>
               <div className="avatar w-11 h-11">
-                <div className="ring-primary ring-offset-base-100  rounded-full ring-2 ring-offset-2">
+                <div className=" ring-offset-base-100  rounded-full ring-1 ring-offset-2">
                   <img src={user?.photoURL} />
                 </div>
               </div>
