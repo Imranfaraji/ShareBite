@@ -1,12 +1,73 @@
-# React + Vite
+# 🍽️ ShareBite - Community Food Sharing and Surplus Reduction Platform
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A full-stack web application built with **React**, **Node.js**, **Express**, **MongoDB**, and **Firebase** that allows users to share surplus food, reduce waste, and help those in need.
 
-Currently, two official plugins are available:
+---
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## 🔗 Live Website
 
-## Expanding the ESLint configuration
+👉 [Visit ShareBite Live](https://nimble-toffee-87050b.netlify.app/)
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+---
+
+## 🧰 Tech Stack
+
+- **Frontend**: React, Tailwind CSS, React Router, TanStack Query, Firebase Auth, Framer Motion
+- **Backend**: Node.js, Express.js, MongoDB
+- **Authentication**: Firebase Email/Password Auth, JWT
+- **Deployment**: Vercel (Client), Render (Server), Firebase Hosting
+
+---
+
+## ✨ Features
+
+### 🔐 Authentication
+- Email & Password Signup/Login
+- Private Routes for Authenticated Users
+- JWT Secured API
+
+### 🍱 Food Features
+- Add food with all necessary info (image, quantity, location, date, etc.)
+- View all available foods
+- Sort by quantity
+- Search by food name
+- Filter featured foods
+- Food details with request option
+
+### 📝 Request System
+- Modal with pre-filled food & user info
+- Additional Notes field
+- Requested food status changed from "available" → "requested"
+- Requested foods appear in “My Requested Foods”
+
+### 🧑 Dashboard
+- **My Foods** (for donors)
+- **My Requested Foods** (for receivers)
+
+### 📦 Extra
+- Responsive Design
+- Toast Notifications
+- Framer Motion Animations
+- Reusable Components
+
+---
+
+## 📁 Folder Structure
+
+```bash
+src/
+├── assets/
+├── components/
+├── context/
+├── hooks/
+├── layouts/
+├── pages/
+│   ├── Home/
+│   ├── AddFood/
+│   ├── AvailableFoods/
+│   ├── Details/
+│   ├── Login/
+│   ├── Register/
+├── routes/
+├── App.jsx
+└── main.jsx

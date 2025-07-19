@@ -10,6 +10,14 @@ import { auth } from "../firebase/firebase.init";
 const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null);
   const [loading, setLoading] = useState(true);
+
+  const myRequest=(email)=>{
+    return fetch(`https://food-donet-server.vercel.app/myrequest?email=${email}`,{
+      headers:{
+        authorization:`Bearer ${user?.accessToken}`
+      }
+    }).then(res=>res.json())
+  }
  
 
   
@@ -66,6 +74,7 @@ const AuthProvider = ({ children }) => {
     handleResetPassword,
     createUser,
     UpdateUserProfile,
+    myRequest,
     
   };
 
