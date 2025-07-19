@@ -12,6 +12,8 @@ import AddFood from "../../pages/AddFood/AddFood"
 import ManageFood from "../../pages/ManageFood/ManageFood"
 import MyFoodRequest from "../../pages/MyFoodRequest/MyFoodRequest"
 import Error from "../ErrorPage/Error";
+import Loading from "../../pages/Loading/Loading";
+import Details from "../../pages/Details/Details"
 
  export const router = createBrowserRouter([
     {
@@ -30,7 +32,9 @@ import Error from "../ErrorPage/Error";
         },
         {
           path:'/avlailablefood',
-          element:<AvialableFoods></AvialableFoods>
+          element:<AvialableFoods></AvialableFoods>,
+          loader: ()=>fetch('https://food-donet-server.vercel.app/foods'),
+           HydrateFallback:Loading
         },
         {
           path:'/addfood',
@@ -43,6 +47,12 @@ import Error from "../ErrorPage/Error";
         {
           path:'/foodrequest',
           element:<PrivetRout><MyFoodRequest></MyFoodRequest></PrivetRout>
+        },
+        {
+          path:'/details/:id',
+          element:<PrivetRout> <Details></Details> </PrivetRout>,
+          loader:({params})=>fetch(`https://food-donet-server.vercel.app/foods/${params.id}`),
+          HydrateFallback:Loading
         }
       ]
     },
