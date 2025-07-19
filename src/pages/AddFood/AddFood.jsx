@@ -31,6 +31,7 @@ const AddFood = () => {
   }
   return (
     <div className="w-full  secondary py-16">
+      <title>ShareBite || add food</title>
       <div className="text-center text-color">
         <h1 className="text-3xl font-bold mb-3">Share Your Surplus Food</h1>
         <p>
@@ -66,7 +67,7 @@ const AddFood = () => {
             <input
               type="number"
               className="input w-full border border-cyan-400 focus:outline-none"
-              placeholder="Food image (url)"
+              placeholder="Quantity"
               required
               name='quantity'
             />
@@ -99,7 +100,7 @@ const AddFood = () => {
             />
 
 
-            <input type="submit"  className="primary btn mt-5 hover:bg-green-500"/>
+            <input type="submit"  className="primary btn mt-5 text-white font-bold hover:bg-green-300"/>
 
             
           </fieldset>
