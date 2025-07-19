@@ -1,8 +1,14 @@
-import React from "react";
+import React, { useContext } from "react";
 import { FaLocationArrow } from "react-icons/fa";
-import { useLoaderData } from "react-router";
+import { useLoaderData, useNavigate } from "react-router";
+import { AuthContext } from "../../Context/AuthContext";
+import moment from "moment/moment";
+import axios from "axios";
+import { toast } from "react-toastify";
 
 const Details = () => {
+    const {user}=useContext(AuthContext)
+    const navigate = useNavigate()
   const food = useLoaderData();
   const {
     status,
@@ -13,8 +19,58 @@ const Details = () => {
     location,
     donnerName,
   } = food;
+
+  const handleRequest=e=>{
+    e.preventDefault()
+    const form=e.target;
+
+    const reqInfo={
+
+        foodId:food._id,
+        foodName:food.foodName,
+        foodImage:food.foodImage,
+        donnerEmail:email,
+        donnerName:donnerName,
+        userEmail:user?.email,
+        requetTaime:moment().format('YYYY-MM-DD HH:mm:ss'),
+        location:location,
+        expiredDate:expiredDate,
+        notes:form.notes.value,
+        status:"requested"
+        
+
+    }
+
+    axios.post('https://food-donet-server.vercel.app/myrequest',reqInfo)
+    .then(res=>{
+        if(res.data.insertedId){
+            toast.success('Request successfully!')
+            document.getElementById('my_modal_4').close()
+
+            axios.patch(`https://food-donet-server.vercel.app/foods/${food._id}`,{
+                 status:"requested"
+            }).then(res=>{
+                if(res.data.modifiedCount){
+                    toast.success('successfully midified!')
+                    navigate('/avlailablefood')
+                }
+            })
+            .catch(error=>{
+                toast.error(error.message)
+            })
+
+
+        }
+    })
+    .catch(error=>{
+        toast.error(error.message)
+    })
+
+    
+  } 
+
   return (
-    <div className="w-full secondary py-16">
+    <div className="w-full secondary min-h-screen flex items-center justify-center">
       <title>Details</title>
 
       <div className="responsive">
@@ -27,7 +83,7 @@ const Details = () => {
             <div className="text-start">
               <div className="flex gap-2">
                 <h1 className="text-5xl font-bold">{food.foodName}</h1>
-              <div className="badge badge-secondary">{status}</div>
+                <div className="badge badge-secondary">{status}</div>
               </div>
               <div className="text-start flex flex-col md:flex-row items-center justify-between mt-3">
                 <p>Notes : {food.notes}</p>
@@ -49,30 +105,102 @@ const Details = () => {
                   {/* donner information */}
 
                   <div className="mt-3 flex items-center justify-center gap-4">
-
-                    <img src={donnerimage} alt="" 
-                    className="w-15 h-15 rounded-full  border-2 border-green-800"/>
+                    <img
+                      src={donnerimage}
+                      alt=""
+                      className="w-15 h-15 rounded-full  border-2 border-green-800"
+                    />
                     <div>
-
-                        <p className="font-bold text-sm">Donner Name : {donnerName}</p>
-                        <p className="font-bold text-sm">Donner Email : {email}</p>
-
+                      <p className="font-bold text-sm">
+                        Donner Name : {donnerName}
+                      </p>
+                      <p className="font-bold text-sm">
+                        Donner Email : {email}
+                      </p>
                     </div>
-
                   </div>
-
-                 
-
-
                 </div>
 
-                 <div className="text-center mt-3 ">
-                    <button className="btn primary text-white border-none">Food Request</button>
-                  </div>
+                <div className="text-center mt-3 ">
+                  <button onClick={() => document.getElementById("my_modal_4").showModal()} className="btn primary text-white border-none">
+                    Food Request
+                  </button>
+                </div>
               </div>
             </div>
           </div>
         </div>
+
+        {/* You can open the modal using document.getElementById('ID').showModal() method */}
+        
+        <dialog id="my_modal_4" className="modal">
+          <div className="modal-box w-11/12 max-w-5xl">
+
+
+            <form onSubmit={handleRequest} className="flex flex-col items-center justify-center gap-2" >
+
+                <label className="text-sm font-bold" htmlFor="">Food Name</label>
+
+                <input type="text"  value={food.foodName} readOnly className="input text-center" />
+
+                <label className="text-sm font-bold" htmlFor="">Food Image (Url)</label>
+
+                <input type="url" value={food.foodImage} readOnly className="input text-center" />
+
+                <label className="text-sm font-bold" htmlFor="">Food Id</label>
+
+                <input type="text" value={food._id} readOnly className="input text-center" />
+
+                <label className="text-sm font-bold" htmlFor="">Donner Email</label>
+
+                <input type="text" value={email} readOnly className="input text-center" />
+
+                 <label className="text-sm font-bold" htmlFor="">Donner Name</label>
+                
+                
+                <input type="text" value={donnerName} readOnly className="input text-center" />
+
+                <label className="text-sm font-bold" htmlFor="">Seeker Email</label>
+
+                <input type="text" value={user?.email} readOnly className="input text-center" />
+
+                <label className="text-sm font-bold" htmlFor="">Request time</label>
+
+                <input type="text" value={moment().format('YYYY-MM-DD HH:mm:ss')} readOnly className="input text-center" />
+
+                <label className="text-sm font-bold" htmlFor="">Pickup Location</label>
+
+                <input type="text" value={location} readOnly className="input text-center" />
+
+                <label className="text-sm font-bold" htmlFor="">Expired Date</label>
+
+                <input type="text" value={expiredDate} readOnly className="input text-center" />
+
+                <label className="text-sm font-bold" htmlFor="">Aditional Notes</label>
+
+                <textarea type="text" defaultValue={food.notes}  name="notes" className="input text-center py-2" />
+
+                <button className="btn primary text-white" type="submit">Request</button>
+
+                
+
+
+
+
+
+            </form>
+
+
+            <div className="modal-action">
+              <form method="dialog">
+                {/* if there is a button, it will close the modal */}
+                <button className="btn">Close</button>
+              </form>
+            </div>
+          </div>
+        </dialog>
+
+
       </div>
     </div>
   );

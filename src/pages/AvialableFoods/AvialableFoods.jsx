@@ -19,7 +19,7 @@ const AvialableFoods = () => {
     setAllFoods(searchResult)
   }
 
-  console.log(allFoods)
+  
 
 
 

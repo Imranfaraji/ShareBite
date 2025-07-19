@@ -13,7 +13,7 @@ const FeaturedFoods = () => {
         }
     })
 
-    console.log(data)
+    
 
     if(isError){
         return <p>{error.message}</p>
