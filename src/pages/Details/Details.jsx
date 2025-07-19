@@ -61,8 +61,14 @@ const Details = () => {
 
                   </div>
 
+                 
+
 
                 </div>
+
+                 <div className="text-center mt-3 ">
+                    <button className="btn primary text-white border-none">Food Request</button>
+                  </div>
               </div>
             </div>
           </div>
