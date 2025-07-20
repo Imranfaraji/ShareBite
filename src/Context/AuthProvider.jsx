@@ -18,6 +18,14 @@ const AuthProvider = ({ children }) => {
       }
     }).then(res=>res.json())
   }
+
+  const myPostedFoods=(email)=>{
+    return fetch(`https://food-donet-server.vercel.app/mypostedfoods?email=${email}`,{
+      headers:{
+        authorization:`Bearer ${user?.accessToken}`
+      }})
+    .then(res=>res.json())
+  }
  
 
   
@@ -75,6 +83,7 @@ const AuthProvider = ({ children }) => {
     createUser,
     UpdateUserProfile,
     myRequest,
+    myPostedFoods,
     
   };
 
