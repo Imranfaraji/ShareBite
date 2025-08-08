@@ -4,9 +4,7 @@ A full-stack web application built with **React**, **Node.js**, **Express**, **M
 
 ---
 
-## 🔗 Live Website
 
-👉 [Visit ShareBite Live](https://nimble-toffee-87050b.netlify.app/)
 
 ---
 
@@ -34,6 +32,13 @@ A full-stack web application built with **React**, **Node.js**, **Express**, **M
 - Filter featured foods
 - Food details with request option
 
+
+  ## Technology
+  -Front-End: react, react router, tailwindcss
+  -Back-End: nodejs.js, express.js, MongoDB
+  -Authentication: firebase, auth, JWT
+  -Dependencies: fremar motion, react toastify, axios, tanStack Query
+
 ### 📝 Request System
 - Modal with pre-filled food & user info
 - Additional Notes field
@@ -52,22 +57,6 @@ A full-stack web application built with **React**, **Node.js**, **Express**, **M
 
 ---
 
-## 📁 Folder Structure
+## 🔗 Live Website
 
-```bash
-src/
-├── assets/
-├── components/
-├── context/
-├── hooks/
-├── layouts/
-├── pages/
-│   ├── Home/
-│   ├── AddFood/
-│   ├── AvailableFoods/
-│   ├── Details/
-│   ├── Login/
-│   ├── Register/
-├── routes/
-├── App.jsx
-└── main.jsx
+👉 [Visit ShareBite Live](https://nimble-toffee-87050b.netlify.app/)
