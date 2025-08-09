@@ -35,7 +35,7 @@ const FeaturedFoods = () => {
 
             </div>
 
-            <div className='responsive grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 items-center justify-center mt-10'>
+            <div className='responsive grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 items-stretch justify-center mt-10'>
 
                 {
                     data.map(food=><FeaturedFood key={food._id} food={food}></FeaturedFood>)
