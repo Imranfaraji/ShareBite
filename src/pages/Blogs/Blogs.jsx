@@ -2,6 +2,7 @@ import { useQuery } from '@tanstack/react-query';
 import axios from 'axios';
 import React from 'react';
 import Blog from './Blog';
+import Loading from '../Loading/Loading';
 
 const Blogs = () => {
     const {data:blogs=[],isLoading,isError}=useQuery({
@@ -11,7 +12,13 @@ const Blogs = () => {
             return res.data
         }
     })
-    console.log(blogs)
+    
+    if(isLoading){
+        return <Loading></Loading>
+    }
+    if(isError){
+        return <p className='text-center text-2xl font-bold py-10'>Faild to load reviews !</p>
+    }
     return (
         <div className='secondary py-32 w-full'>
             <div className='text-color text-center'>
