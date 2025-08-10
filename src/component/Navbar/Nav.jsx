@@ -17,7 +17,7 @@ const Nav = () => {
   }
 
   return (
-    <div className="w-full primary text-white">
+    <div className="w-full primary  fixed z-50  text-white">
       <div className="navbar responsive shadow-sm">
         <div className="navbar-start">
           <div className="dropdown">
@@ -44,7 +44,7 @@ const Nav = () => {
             >
               <li className="text-sm font-bold">
                 <NavLink
-                  className={({ isActive }) => (isActive ? "border" : "")}
+                  className={({ isActive }) => (isActive ? "border-b rounded-none border-b-orange-300" : "")}
                   to={"/"}
                 >
                   Home
@@ -53,36 +53,49 @@ const Nav = () => {
 
               <li className="text-sm font-bold">
                 <NavLink
-                  className={({ isActive }) => (isActive ? "border" : "")}
+                  className={({ isActive }) => (isActive ? "border-b rounded-none border-b-orange-300" : "")}
                   to={"/avlailablefood"}
                 >
                   Available Foods
                 </NavLink>
               </li>
+              {
+              user&&<>
               <li className="text-sm font-bold">
-                <NavLink
-                  className={({ isActive }) => (isActive ? "border" : "")}
-                  to={"/addfood"}
-                >
-                  Add Food
-                </NavLink>
-              </li>
-              <li className="text-sm font-bold">
-                <NavLink
-                  className={({ isActive }) => (isActive ? "border" : "")}
-                  to={"/managefood"}
-                >
-                  Manage My Food
-                </NavLink>
-              </li>
-              <li className="text-sm font-bold">
-                <NavLink
-                  className={({ isActive }) => (isActive ? "border" : "")}
-                  to={"/foodrequest"}
-                >
-                  My Food Request
-                </NavLink>
-              </li>
+              <NavLink
+                className={({ isActive }) => (isActive ? "border-b rounded-none border-b-orange-300" : "")}
+                to={"/addfood"}
+              >
+                Add Food
+              </NavLink>
+            </li>
+            <li className="text-sm font-bold">
+              <NavLink
+                className={({ isActive }) => (isActive ? "border-b rounded-none border-b-orange-300" : "")}
+                to={"/managefood"}
+              >
+                Manage My Food
+              </NavLink>
+            </li>
+            <li className="text-sm font-bold">
+              <NavLink
+                className={({ isActive }) => (isActive ? "border-b rounded-none border-b-orange-300" : "")}
+                to={"/foodrequest"}
+              >
+                My Food Request
+              </NavLink>
+            </li>
+              </>
+            }
+
+             <li className="text-sm font-bold">
+              <NavLink
+                className={({ isActive }) => (isActive ? "border-b rounded-none border-b-orange-300" : "")}
+                to={"/blogs"}
+              >
+                Blog
+              </NavLink>
+            </li>
             </ul>
           </div>
           <Link to={"/"} className="md:text-2xl text-xl italic font-extrabold">
@@ -93,7 +106,7 @@ const Nav = () => {
           <ul className="menu menu-horizontal px-1">
             <li className="text-sm font-bold">
               <NavLink
-                className={({ isActive }) => (isActive ? "border" : "")}
+                className={({ isActive }) => (isActive ? "border-b rounded-none border-b-orange-300" : "")}
                 to={"/"}
               >
                 Home
@@ -102,15 +115,17 @@ const Nav = () => {
 
             <li className="text-sm font-bold">
               <NavLink
-                className={({ isActive }) => (isActive ? "border" : "")}
+                className={({ isActive }) => (isActive ? "border-b rounded-none border-b-orange-300" : "")}
                 to={"/avlailablefood"}
               >
                 Available Foods
               </NavLink>
             </li>
-            <li className="text-sm font-bold">
+            {
+              user&&<>
+              <li className="text-sm font-bold">
               <NavLink
-                className={({ isActive }) => (isActive ? "border" : "")}
+                className={({ isActive }) => (isActive ? "border-b rounded-none border-b-orange-300" : "")}
                 to={"/addfood"}
               >
                 Add Food
@@ -118,7 +133,7 @@ const Nav = () => {
             </li>
             <li className="text-sm font-bold">
               <NavLink
-                className={({ isActive }) => (isActive ? "border" : "")}
+                className={({ isActive }) => (isActive ? "border-b rounded-none border-b-orange-300" : "")}
                 to={"/managefood"}
               >
                 Manage My Food
@@ -126,10 +141,21 @@ const Nav = () => {
             </li>
             <li className="text-sm font-bold">
               <NavLink
-                className={({ isActive }) => (isActive ? "border" : "")}
+                className={({ isActive }) => (isActive ? "border-b rounded-none border-b-orange-300" : "")}
                 to={"/foodrequest"}
               >
                 My Food Request
+              </NavLink>
+            </li>
+              </>
+            }
+
+             <li className="text-sm font-bold">
+              <NavLink
+                className={({ isActive }) => (isActive ? "border-b rounded-none border-b-orange-300" : "")}
+                to={"/blogs"}
+              >
+                Blog
               </NavLink>
             </li>
           </ul>

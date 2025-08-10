@@ -14,6 +14,7 @@ import MyFoodRequest from "../../pages/MyFoodRequest/MyFoodRequest"
 import Error from "../ErrorPage/Error";
 import Loading from "../../pages/Loading/Loading";
 import Details from "../../pages/Details/Details"
+import Blogs from "../../pages/Blogs/Blogs";
 
  export const router = createBrowserRouter([
     {
@@ -53,6 +54,10 @@ import Details from "../../pages/Details/Details"
           element:<PrivetRout> <Details></Details> </PrivetRout>,
           loader:({params})=>fetch(`https://food-donet-server.vercel.app/foods/${params.id}`),
           HydrateFallback:Loading
+        },
+        {
+          path:'/blogs',
+          Component:Blogs
         }
       ]
     },
