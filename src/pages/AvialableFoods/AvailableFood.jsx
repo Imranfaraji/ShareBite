@@ -1,5 +1,6 @@
 import React from 'react';
-import { FaLocationArrow } from 'react-icons/fa';
+import { FaArrowRight } from 'react-icons/fa';
+
 import { Link } from 'react-router';
 
 const AvailableFood = ({allfood}) => {
@@ -15,10 +16,10 @@ const AvailableFood = ({allfood}) => {
     <h2 className="card-title">{allfood.foodName}</h2>
     <div className='text-start flex items-center justify-between'>
         <p>Notes : {allfood.notes}</p>
-        <h1 className='flex items-center gap-2'><FaLocationArrow></FaLocationArrow> {allfood.location}</h1>
+        
     </div>
     <div className="card-actions justify-end">
-      <Link to={`/details/${allfood._id}`} className='btn primary border-none text-white'>More Details</Link>
+      <Link className="text-green-700 font-semibold flex items-center justify-center gap-1" to={`/details/${allfood._id}`}>Details <span><FaArrowRight /></span></Link>
     </div>
   </div>
 </div>
