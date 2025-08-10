@@ -13,7 +13,7 @@ const Blog = ({ blog }) => {
 
             <h1 className="text-white text-sm font-bold ">{heading}</h1>
             <p className="text-gray-200 text-xs font-semibold">{date}</p>
-            <Link className="btn btn-sm primary text-white border-none " to={`/blog/${_id}`}>Read more</Link>
+            <Link className="btn btn-sm primary text-white border-none " to={`/blogs/${_id}`}>Read more</Link>
 
         </div>
       

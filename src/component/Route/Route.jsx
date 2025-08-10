@@ -15,6 +15,7 @@ import Error from "../ErrorPage/Error";
 import Loading from "../../pages/Loading/Loading";
 import Details from "../../pages/Details/Details"
 import Blogs from "../../pages/Blogs/Blogs";
+import BlogDetails from "../../pages/Blogs/BlogDetails";
 
  export const router = createBrowserRouter([
     {
@@ -58,6 +59,10 @@ import Blogs from "../../pages/Blogs/Blogs";
         {
           path:'/blogs',
           Component:Blogs
+        },
+        {
+          path:'/blogs/:id',
+          Component:BlogDetails
         }
       ]
     },
