@@ -29,7 +29,7 @@ const MyFoodRequest = () => {
   }
 
   return (
-    <div className="w-full min-h-screen secondary py-16">
+    <div className="w-full min-h-screen secondary py-32">
       <title>My Foods Request</title>
       <div className="responsive">
         <div className="text-color text-center">

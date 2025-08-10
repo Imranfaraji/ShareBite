@@ -25,7 +25,7 @@ const AvialableFoods = () => {
 
 
   return (
-    <div className="py-16 w-full secondary">
+    <div className="py-32 w-full secondary">
       <title>sharebite || available foods</title>
 
       <div className="text-color text-center">
@@ -35,20 +35,20 @@ const AvialableFoods = () => {
           before it's gone - help reduce food waste and support your community!
         </p>
 
-        <div className="responsive mt-10">
+        <div className="responsive my-10">
           <form  onSubmit={handleSearch} className="flex items-center justify-center">
             <input className="bg-white p-2 rounded-l-md" type="search" name='search' placeholder="Search food here..."/><button className="p-3 cursor-pointer rounded-r-md  border-l bg-white"><FaSearch></FaSearch></button>
           </form>
 
           <div className="text-center py-5 hidden lg:flex items-center justify-center">
-            <button onClick={()=>setColumn(!column)} className="btn">{column?"Three Column":"tow Column"}</button>
+            <button onClick={()=>setColumn(!column)} className="btn">{column?"Four Column":"Tree Column"}</button>
           </div>
 
           {
             allFoods.length>0
             ?
             (
-            <div className={`grid grid-cols-1 gap-6 md:grid-cols-2 lg:${column?'grid-cols-2 ':'grid-cols-3'}`}>
+            <div className={`grid grid-cols-1 gap-6 md:grid-cols-2 lg:${column?'grid-cols-3 ':'grid-cols-4'}`}>
 
                 {
                     allFoods.map(allfood=><AvailableFood key={allfood._id} allfood={allfood}></AvailableFood>)

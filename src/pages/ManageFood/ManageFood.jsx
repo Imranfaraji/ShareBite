@@ -18,7 +18,7 @@ const ManageFood = () => {
     
 
     return (
-        <div className='w-full secondary py-16 min-h-screen'>
+        <div className='w-full secondary py-32 min-h-screen'>
             <title>ManageFood</title>
 
             <div className="text-color text-center">

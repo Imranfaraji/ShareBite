@@ -30,7 +30,7 @@ const AddFood = () => {
     
   }
   return (
-    <div className="w-full  secondary py-16">
+    <div className="w-full  secondary py-32">
       <title>ShareBite || add food</title>
       <div className="text-center text-color">
         <h1 className="text-3xl font-bold mb-3">Share Your Surplus Food</h1>
