@@ -1,11 +1,13 @@
+import Lottie from 'lottie-react';
 import React from 'react';
 import { Link } from 'react-router';
+import Error404 from "../../assets/Animation/Error404.json"
 
 const Error = () => {
     return (
         <div className='w-full min-h-screen secondary flex flex-col items-center justify-center gap-2'>
                <title>Error</title>
-            <img className='w-96 h-96 rounded-2xl shadow' src="https://i.ibb.co/DDy4wL6c/images-1.jpg" alt="" />
+            <Lottie animationData={Error404} loop={true}></Lottie>
             <h1 className='text-2xl font-bold italic '>
                 
                 Oops! Food not found
